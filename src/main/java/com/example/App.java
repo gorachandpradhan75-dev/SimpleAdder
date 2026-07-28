@@ -14,6 +14,6 @@ public class App {
 
         System.out.println("First Number: " + num1);
         System.out.println("Second Number: " + num2);
-        System.out.println("Sum = " + sum);
+        System.out.println("Addition Result = " + sum);
     }
 }
