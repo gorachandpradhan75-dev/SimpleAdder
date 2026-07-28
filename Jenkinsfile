@@ -1,40 +1,57 @@
-node {
-    def mvnHome = tool 'Maven-3.9.16'
+pipeline {
+    agent any
 
-    stage('Checkout') {
-        git branch: 'main',
-            url: 'https://github.com/gorachandpradhan75-dev/SimpleAdder.git'
+    tools {
+        maven 'Maven-3.9.16'
     }
 
-    stage('Validate') {
-        bat "\"${mvnHome}\\bin\\mvn.cmd\" validate"
-    }
+    stages {
+        stage('Validate') {
+            steps {
+                bat 'mvn validate'
+            }
+        }
 
-    stage('Compile') {
-        bat "\"${mvnHome}\\bin\\mvn.cmd\" compile"
-    }
+        stage('Compile') {
+            steps {
+                bat 'mvn compile'
+            }
+        }
 
-    stage('Test') {
-        bat "\"${mvnHome}\\bin\\mvn.cmd\" test"
-    }
+        stage('Test') {
+            steps {
+                bat 'mvn test'
+            }
+        }
 
-    stage('Package') {
-        bat "\"${mvnHome}\\bin\\mvn.cmd\" package"
-    }
+        stage('Package') {
+            steps {
+                bat 'mvn package'
+            }
+        }
 
-    stage('Verify') {
-        bat "\"${mvnHome}\\bin\\mvn.cmd\" verify"
-    }
+        stage('Verify') {
+            steps {
+                bat 'mvn verify'
+            }
+        }
 
-    stage('Install') {
-        bat "\"${mvnHome}\\bin\\mvn.cmd\" install"
-    }
+        stage('Install') {
+            steps {
+                bat 'mvn install'
+            }
+        }
 
-    stage('Site') {
-        bat "\"${mvnHome}\\bin\\mvn.cmd\" site"
-    }
+        stage('Site') {
+            steps {
+                bat 'mvn site'
+            }
+        }
 
-    stage('Clean') {
-        bat "\"${mvnHome}\\bin\\mvn.cmd\" clean"
+        stage('Clean') {
+            steps {
+                bat 'mvn clean'
+            }
+        }
     }
 }
